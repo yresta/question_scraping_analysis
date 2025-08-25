@@ -53,8 +53,8 @@ st.set_page_config(page_title="Scraper & Analisis Telegram", layout="wide")
 st.title("🏦 Analisis Topik Pertanyaan Grup Telegram")
 
 # === Secrets / Credentials ===
-api_id = st.secrets.get("TELEGRAM_API_ID", None) or 21469101
-api_hash = st.secrets.get("TELEGRAM_API_HASH", None) or "3088140cd7e561ecdadcfbd9871cf3f0"
+api_id = st.secrets["TELEGRAM_API_ID"]
+api_hash = st.secrets["TELEGRAM_API_HASH"]
 session_name = "session_utama"
 wib = ZoneInfo("Asia/Jakarta")
 
@@ -1034,4 +1034,5 @@ if run_button:
     st.success("Analisis Selesai!")
 
 st.caption("Catatan: Pastikan API ID/API Hash Telegram benar dan akun yang digunakan memiliki akses ke grup. Model sentence-transformers akan diunduh saat pertama kali dijalankan. Hindari membagikan API credentials di publik.")
+
 
