@@ -39,12 +39,21 @@ except Exception:
     UMAP_AVAILABLE = False
 
 # NLTK data
-nltk_packages = ['stopwords', 'punkt']
-for pkg in nltk_packages:
+import os
+nltk_data_path = os.path.join(os.path.dirname(__file__), "nltk_data")
+os.makedirs(nltk_data_path, exist_ok=True)
+nltk.data.path.append(nltk_data_path)
+
+nltk_packages = {
+    'stopwords': 'corpora/stopwords',
+    'punkt': 'tokenizers/punkt'
+}
+
+for pkg, path in nltk_packages.items():
     try:
-        nltk.data.find(f'corpora/{pkg}')
-    except Exception:
-        nltk.download(pkg)
+        nltk.data.find(path)
+    except LookupError:
+        nltk.download(pkg, download_dir=nltk_data_path)
 
 nest_asyncio.apply()
 logging.getLogger("telethon").setLevel(logging.ERROR)
@@ -1034,5 +1043,6 @@ if run_button:
     st.success("Analisis Selesai!")
 
 st.caption("Catatan: Pastikan API ID/API Hash Telegram benar dan akun yang digunakan memiliki akses ke grup. Model sentence-transformers akan diunduh saat pertama kali dijalankan. Hindari membagikan API credentials di publik.")
+
 
 
