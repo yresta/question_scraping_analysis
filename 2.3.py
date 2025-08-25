@@ -51,7 +51,7 @@ stopwords_en = {
 # Tokenizer sederhana tanpa NLTK
 def simple_tokenize(text):
     # Lowercase + ambil kata alfanumerik
-    return re.findall(r'\b\w+\b', text.lower()
+    return re.findall(r'\b\w+\b', text.lower())
 
 nest_asyncio.apply()
 logging.getLogger("telethon").setLevel(logging.ERROR)
@@ -1041,6 +1041,7 @@ if run_button:
     st.success("Analisis Selesai!")
 
 st.caption("Catatan: Pastikan API ID/API Hash Telegram benar dan akun yang digunakan memiliki akses ke grup. Model sentence-transformers akan diunduh saat pertama kali dijalankan. Hindari membagikan API credentials di publik.")
+
 
 
 
