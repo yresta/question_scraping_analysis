@@ -39,21 +39,19 @@ except Exception:
     UMAP_AVAILABLE = False
 
 # NLTK data
-import os
-nltk_data_path = os.path.join(os.path.dirname(__file__), "nltk_data")
-os.makedirs(nltk_data_path, exist_ok=True)
-nltk.data.path.append(nltk_data_path)
-
-nltk_packages = {
-    'stopwords': 'corpora/stopwords',
-    'punkt': 'tokenizers/punkt'
+# Stopwords manual, offline
+stopwords_id = {
+    "dan","di","ke","dari","yang","untuk","ini","itu","saya","kamu",
+    "apa","bagaimana","mengapa","dengan","adalah","akan","ada"
+}
+stopwords_en = {
+    "the","and","is","in","to","a","of","for","on","it","this","that"
 }
 
-for pkg, path in nltk_packages.items():
-    try:
-        nltk.data.find(path)
-    except LookupError:
-        nltk.download(pkg, download_dir=nltk_data_path)
+# Tokenizer sederhana tanpa NLTK
+def simple_tokenize(text):
+    # Lowercase + ambil kata alfanumerik
+    return re.findall(r'\b\w+\b', text.lower()
 
 nest_asyncio.apply()
 logging.getLogger("telethon").setLevel(logging.ERROR)
@@ -1043,6 +1041,7 @@ if run_button:
     st.success("Analisis Selesai!")
 
 st.caption("Catatan: Pastikan API ID/API Hash Telegram benar dan akun yang digunakan memiliki akses ke grup. Model sentence-transformers akan diunduh saat pertama kali dijalankan. Hindari membagikan API credentials di publik.")
+
 
 
 
