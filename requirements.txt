@@ -5,4 +5,3 @@ scikit-learn==1.5.2
 nltk==3.9.1
 sentence-transformers==3.2.1
 telethon==1.36.0
-python-3.11.9
