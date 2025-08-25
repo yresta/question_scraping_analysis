@@ -359,6 +359,7 @@ def clean_text_for_clustering(text: str) -> str:
     text = re.sub(r'#\w+', '', text)                # hashtags
     text = re.sub(r'\d+', '', text)                 # numbers
     text = re.sub(r'[^a-z\s]', '', text)            # non-letters
+    text = re.sub(r"(.)\1{2,}", r"\1", text)        # repeated chars
     tokens = word_tokenize(text)
     tokens = [t for t in tokens if t not in stop_words_id and len(t) > 2]
     tokens = [stemmer.stem(t) for t in tokens]
@@ -1033,3 +1034,4 @@ if run_button:
     st.success("Analisis Selesai!")
 
 st.caption("Catatan: Pastikan API ID/API Hash Telegram benar dan akun yang digunakan memiliki akses ke grup. Model sentence-transformers akan diunduh saat pertama kali dijalankan. Hindari membagikan API credentials di publik.")
+
